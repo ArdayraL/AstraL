@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Soru ve yardım
+    url: https://github.com/ArdayraL/AstraL/blob/main/README.md#sık-sorulanlar
+    about: Kurulum ve kullanım sorularının çoğunun cevabı README'de. Destek sunucusu bağlantısı yakında.
