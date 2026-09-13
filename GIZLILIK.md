@@ -1,6 +1,6 @@
 # AstraL — Gizlilik Politikası
 
-**Son güncelleme:** 9 Eylül 2026
+**Son güncelleme:** 13 Eylül 2026
 
 AstraL, Discord sunucuları için geliştirilmiş bir kayıt ve moderasyon botudur. Bu belge, botun hangi verileri neden işlediğini, ne kadar sakladığını ve bu veriler üzerinde hangi haklara sahip olduğunuzu açıklar.
 
@@ -34,7 +34,7 @@ Bot yalnızca çalışması için gereken veriyi saklar. Aşağıdaki liste **ek
 
 ### 2.2 Moderasyon verileri
 
-- Uyarılar: sebep metni, uyarıyı veren yetkilinin kimliği, tarih, aktif/pasif durumu
+- Uyarılar: sebep metni, uyarıyı veren yetkilinin kimliği, tarih, aktif/pasif durumu. Uyarı sağ tık menüsündeki *Sil ve Uyar* ile verildiyse sebep metni **silinen mesajdan kısa bir alıntı** da içerir (bkz. 2.4)
 - Moderasyon işlemleri: yasaklama, atma, susturma, susturma kaldırma, kayıt, kayıt silme — işlem türü, sebep, süre, yetkili kimliği, tarih
 - Kayıt başvuruları: başvuru durumu, kararı veren yetkili, red sebebi, karar tarihi
 
@@ -51,8 +51,10 @@ Bot, mesaj içeriğini **okur** ama kural olarak **saklamaz**. İçerik yalnızc
 
 1. **Komut çalıştırmak için** — mesaj bir komutla başlıyorsa. İşlem bitince içerik atılır.
 2. **Küfür ve bağlantı filtresi için** — yalnızca sunucu yöneticisi filtreyi açtıysa. Kontrol bellekte yapılır, sonuç veritabanına yazılmaz.
-3. **Silinen mesajı geri gösterme (`snipe`) için** — silinen son mesajlar **yalnızca bellekte, en fazla 2 saat** tutulur ve yalnızca "Mesajları Yönet" yetkisi olanlar görebilir. Bot yeniden başladığında bu veri tamamen kaybolur, hiçbir zaman diske yazılmaz.
-4. **Denetim kaydı için** — yalnızca sunucu yöneticisi denetim kanalını ayarladıysa, silinen ve düzenlenen mesajlar o sunucunun **kendi Discord kanalına** yazılır. Bu kayıt botun veritabanında değil, sunucunun kendi kanalında durur ve sunucu yöneticisinin denetimindedir.
+3. **Spam koruması için** — yalnızca sunucu yöneticisi açtıysa. Mesaj selini ve aynı mesajın tekrarını yakalamak için kişinin son mesajlarının **içeriği, gönderim zamanı ve etiket sayısı yalnızca bellekte, en fazla 2 dakika** tutulur. Spam tespit edildiğinde bu kayıtlar hemen atılır; hiçbir zaman diske yazılmaz. Spam sonucu uygulanan susturma, diğer moderasyon işlemleri gibi kaydedilir (bkz. 2.2) — mesaj içeriği bu kayda girmez.
+4. **Silinen mesajı geri gösterme (`snipe`) için** — silinen son mesajlar **yalnızca bellekte, en fazla 2 saat** tutulur ve yalnızca "Mesajları Yönet" yetkisi olanlar görebilir. Bot yeniden başladığında bu veri tamamen kaybolur, hiçbir zaman diske yazılmaz.
+5. **Denetim kaydı için** — yalnızca sunucu yöneticisi denetim kanalını ayarladıysa, silinen ve düzenlenen mesajlar o sunucunun **kendi Discord kanalına** yazılır. Bu kayıt botun veritabanında değil, sunucunun kendi kanalında durur ve sunucu yöneticisinin denetimindedir.
+6. **"Sil ve Uyar" için — kalıcı saklamanın tek istisnası.** Bir yetkili bir mesajı sağ tık menüsünden silip yazarını uyardığında, neden uyarıldığının sonradan anlaşılabilmesi için silinen mesajdan **kısa bir alıntı uyarı sebebine eklenir** ve uyarı kaydıyla birlikte saklanır. Alıntıyı kişinin kendisi ve o sunucunun yetkilileri görebilir; uyarı silme talebiyle birlikte silinir.
 
 ### 2.5 Toplanmayan veriler
 
@@ -75,12 +77,16 @@ Bot şunları **hiçbir koşulda** toplamaz, saklamaz veya talep etmez: e-posta 
 
 | Veri | Süre |
 |---|---|
+| Spam koruması için son mesajlar | **En fazla 2 dakika**, yalnızca bellekte |
 | Silinen mesaj içeriği (`snipe`) | **2 saat**, yalnızca bellekte |
 | Kayıt, uyarı, moderasyon ve başvuru kayıtları | Bot sunucudan çıkarılana veya silme talebi gelene kadar |
 | Etkinlik sayaçları, davet kayıtları | Aynı |
 | Sunucu ayarları | Bot sunucudan çıkarıldığında geçerliliğini yitirir |
+| Veritabanı yedekleri | Son 14 günün günlük yedekleri, öncesinde haftada bir yedek olmak üzere **en fazla 10 hafta** |
 
 **Uyarı silindiğinde kayıt tablodan düşürülmez, "pasif" olarak işaretlenir.** Bu, moderasyon kararlarının sonradan denetlenebilmesi içindir; talep üzerine tamamen silinir.
+
+**Yedekler hakkında.** Veri kaybını önlemek için veritabanının günlük yedeği alınır. Bir kayıt silindiğinde canlı veritabanından hemen kaldırılır, ancak silinmeden önce alınmış yedeklerde **yukarıdaki süre dolana kadar** kalır ve süre dolunca yedekle birlikte kendiliğinden yok edilir. Yedekler yalnızca bir arıza sonrası veriyi geri getirmek için kullanılır, başka hiçbir amaçla okunmaz. Bir yedekten geri yükleme yapılırsa, önceden gelmiş silme talepleri yeniden uygulanır.
 
 ---
 
@@ -122,7 +128,7 @@ Kayıt formu yaş sorar. 13 yaşın altında olduğu anlaşılan bir kişiye ait
 
 ## 8. Güvenlik
 
-Veriler botun çalıştığı sunucuda tutulur ve yalnızca botun kendisi tarafından erişilir. Bot, kurulumda **Yönetici yetkisi istemez**; yalnızca çalışması için gereken izinleri talep eder.
+Veriler ve yedekleri botun çalıştığı sunucuda tutulur ve yalnızca botun kendisi tarafından erişilir. Her yedek alındığında bütünlüğü doğrulanır. Bot, kurulumda **Yönetici yetkisi istemez**; yalnızca çalışması için gereken izinleri talep eder.
 
 Yine de hiçbir sistem mutlak güvenlik sunmaz. Bir güvenlik açığı fark ederseniz kamuya açık şekilde paylaşmadan önce iletişime geçmenizi rica ederiz.
 

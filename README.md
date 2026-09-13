@@ -2,7 +2,7 @@
 
 **Discord sunucuları için Türkçe kayıt ve moderasyon botu.**
 
-Kayıt başvurularını butonlu forma bağlar, başvuranın geçmişini yetkilinin önüne koyar, uyarıları sunucu bazlı numaralandırır ve baskınları davet koduyla hesap yaşını birleştirerek yakalar. 40 komutun tamamı hem `.komut` hem `/komut` olarak çalışır.
+Kayıt başvurularını butonlu forma bağlar, başvuranın geçmişini yetkilinin önüne koyar, uyarıları sunucu bazlı numaralandırır, spamı bellekte yakalar ve baskınları davet koduyla hesap yaşını birleştirerek durdurur. Komutlar `/komut` olarak çalışır, çoğu `.komut` olarak da.
 
 [**➕ Sunucuna ekle**](https://discord.com/oauth2/authorize?client_id=1457131021194625239&permissions=1099914669302&scope=bot+applications.commands) · [Gizlilik Politikası](GIZLILIK.md) · [Kullanım Şartları](SARTLAR.md)
 
@@ -18,6 +18,10 @@ Onay ve red tek tıkla. Red sebebi kullanıcıya özelden iletiliyor — neyi d�
 
 24 saatten uzun bekleyen başvurular yetkilileri etiketleyerek kendini hatırlatıyor.
 
+### Otomatik rol
+
+Kayıt sistemi istemeyen sunucular için: katılan üyeye rolü bot veriyor. Üyelere ve botlara ayrı, birden fazla rol tanımlanabiliyor. Baskın kilidi aktifken rol dağıtımı kendiliğinden duruyor; hesap yaşı filtresi ve gecikme ile saldırganların rol toplaması zorlaşıyor. `otorol uygula` rolü mevcut üyelere de veriyor.
+
 ### Uyarı ve otomatik ceza
 
 Uyarılar her sunucuda 1'den başlıyor. Eşik tanımlayıp ceza bağlayabilirsin — örneğin 3. uyarıda bir saat susturma. Uyarı silmek kaydı tablodan düşürmüyor, pasife alıyor: moderasyon geçmişi denetlenebilir kalıyor.
@@ -27,6 +31,10 @@ Uyarılar her sunucuda 1'den başlıyor. Eşik tanımlayıp ceza bağlayabilirsi
 Yalnızca "şu sürede şu kadar katılım" saymıyor. Davet kodunu ve hesap yaşını birleştirip sunucu paylaşımından gelen organik kalabalıkla tek koddan gelen taze hesapları ayırıyor.
 
 Varsayılan tepki sunucuyu kilitlemek — doğrulama seviyesini yükseltip davetleri durdurmak. Atma ve yasaklama bilerek varsayılan değil: yanlış alarmda gerçek üyeler gider. Kilit kalıcı yazılıyor, yani bot yeniden başlasa bile sunucu yüksek doğrulamada unutulmuyor.
+
+### Anti-spam
+
+Mesaj seli, aynı mesajın tekrarı, toplu etiket ve büyük harf yağmuru. Spam mesajları toplu siliniyor, gönderen süreli susturuluyor; büyük harfte yalnızca mesaj siliniyor. Eşiklerin hepsi `/koruma spam` ile ayarlanıyor, yetkililer ve muaf rol etkilenmiyor. Tespit tamamen bellekte — mesaj başına veritabanı sorgusu yok, yoğun sunucuda botu yavaşlatmıyor.
 
 ### İçerik filtresi
 
@@ -41,6 +49,10 @@ Denetim kaydı moderasyon logundan **ayrı kanalda** tutuluyor. Çok daha yoğun
 ### Sicil
 
 `sicil` komutu kişinin uyarılarını, moderasyon işlemlerini ve kayıt geçmişini tek kartta zaman sırasıyla birleştiriyor. Kim ne zaman ne yaptı, tek yerde.
+
+### Sağ tık menüsü
+
+Bir kullanıcıya sağ tıkla → **Uygulamalar** → *Sicili Göster* veya *Uyar*. Bir mesaja sağ tıkla → *Sil ve Uyar*: mesaj siliniyor, yazarı uyarılıyor ve silinen mesaj uyarı sebebine alıntılanıyor. Komut yazmaya, kimlik kopyalamaya gerek yok.
 
 ### Ayrıca
 
