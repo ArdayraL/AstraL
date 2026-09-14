@@ -40,6 +40,10 @@ Mesaj seli, aynı mesajın tekrarı, toplu etiket ve büyük harf yağmuru. Spam
 
 Küfür ve bağlantı filtresi, alan adı beyaz listesi ve muaf rol desteğiyle. Düzenlenen mesajlar da denetleniyor: temiz mesaj atıp sonradan link eklemek filtreyi delmiyor.
 
+### Discord AutoMod
+
+`/automod kur` Discord'un yerleşik AutoMod kurallarını tek menüden kuruyor: küfür ve argo, Türkçe küfür, sunucu davetleri, dolandırıcılık kalıpları, şüpheli spam, toplu etiket ve küfürlü profil adları. AutoMod mesajı **gönderilmeden önce** engelliyor ve bot kapalıyken de çalışıyor; AstraL'in kendi filtresiyle birlikte katmanlı koruma oluyor. Kurallar AstraL ayarlarını izliyor (etiket sınırı, susturma süresi, muaf rol, uyarı kanalı), sunucuda başka botların ya da elle kurulmuş kurallara dokunulmuyor.
+
 ### Denetim kaydı
 
 Mesaj silme ve düzenleme, takma ad ve rol değişimi, kanal ve rol işlemleri, ses hareketleri, yasaklamalar. Silinen mesajın görseli kayda gömülüyor, dosya adı ve boyutu ayrıca yazılıyor — Discord eki CDN'den kaldırdığında bile ne olduğu kayıtta kalıyor.
