@@ -36,6 +36,7 @@ Bot yalnızca çalışması için gereken veriyi saklar. Aşağıdaki liste **ek
 
 - Uyarılar: sebep metni, uyarıyı veren yetkilinin kimliği, tarih, aktif/pasif durumu. Uyarı sağ tık menüsündeki *Sil ve Uyar* ile verildiyse sebep metni **silinen mesajdan kısa bir alıntı** da içerir (bkz. 2.4)
 - Moderasyon işlemleri: yasaklama, atma, susturma, susturma kaldırma, kayıt, kayıt silme — işlem türü, sebep, süre, yetkili kimliği, tarih
+- AutoMod yakalamaları: Discord'un kendi AutoMod özelliği bir mesajınızı engellediğinde moderasyon geçmişinize **kuralın adı ve uygulanan eylem** yazılır (örnek: `AutoMod: Türkçe küfür · mesaj engellendi`). Engellenen mesajın içeriği ve kurala takılan kelime **saklanmaz** (bkz. 2.4)
 - Kayıt başvuruları: başvuru durumu, kararı veren yetkili, red sebebi, karar tarihi
 
 ### 2.3 Etkinlik verileri
@@ -55,6 +56,7 @@ Bot, mesaj içeriğini **okur** ama kural olarak **saklamaz**. İçerik yalnızc
 4. **Silinen mesajı geri gösterme (`snipe`) için** — silinen son mesajlar **yalnızca bellekte, en fazla 2 saat** tutulur ve yalnızca "Mesajları Yönet" yetkisi olanlar görebilir. Bot yeniden başladığında bu veri tamamen kaybolur, hiçbir zaman diske yazılmaz.
 5. **Denetim kaydı için** — yalnızca sunucu yöneticisi denetim kanalını ayarladıysa, silinen ve düzenlenen mesajlar o sunucunun **kendi Discord kanalına** yazılır. Bu kayıt botun veritabanında değil, sunucunun kendi kanalında durur ve sunucu yöneticisinin denetimindedir.
 6. **"Sil ve Uyar" için — kalıcı saklamanın tek istisnası.** Bir yetkili bir mesajı sağ tık menüsünden silip yazarını uyardığında, neden uyarıldığının sonradan anlaşılabilmesi için silinen mesajdan **kısa bir alıntı uyarı sebebine eklenir** ve uyarı kaydıyla birlikte saklanır. Alıntıyı kişinin kendisi ve o sunucunun yetkilileri görebilir; uyarı silme talebiyle birlikte silinir.
+7. **Discord AutoMod yakalamaları için** — yalnızca sunucuda AutoMod kuralı kuruluysa. Kuralı **Discord uygular**, mesajı Discord engeller; bot yalnızca "engellendi" bildirimini alır. Bu bildirim engellenen mesajın tam metnini ve kurala takılan kelimeyi içerir, ancak bot bunların **hiçbirini saklamaz** — moderasyon geçmişine yalnızca kuralın adı ve uygulanan eylem yazılır (bkz. 2.2). Aynı kişi aynı kurala arka arkaya takılırsa **60 saniye içindeki tekrarlar kaydedilmez**.
 
 ### 2.5 Toplanmayan veriler
 
@@ -68,7 +70,7 @@ Bot şunları **hiçbir koşulda** toplamaz, saklamaz veya talep etmez: e-posta 
 |---|---|
 | Komutları çalıştırmak, botun temel işlevini sunmak | Sözleşmenin ifası (KVKK m.5/2-c, GDPR m.6/1-b) |
 | Kayıt sistemi: ad, yaş, takma ad | **Açık rıza** — kişi formu kendi isteğiyle doldurur (KVKK m.5/1, GDPR m.6/1-a) |
-| Moderasyon kaydı, uyarılar, baskın koruması | Meşru menfaat — sunucu güvenliğinin sağlanması (KVKK m.5/2-f, GDPR m.6/1-f) |
+| Moderasyon kaydı, uyarılar, baskın koruması, AutoMod yakalamaları | Meşru menfaat — sunucu güvenliğinin sağlanması (KVKK m.5/2-f, GDPR m.6/1-f) |
 | Etkinlik sayaçları, davet takibi | Meşru menfaat — sunucu yönetimi. Sunucu yöneticisi kapatabilir |
 
 ---
