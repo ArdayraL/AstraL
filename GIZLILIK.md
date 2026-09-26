@@ -1,6 +1,6 @@
 # AstraL — Gizlilik Politikası
 
-**Son güncelleme:** 26 Eylül 2026
+**Son güncelleme:** 27 Eylül 2026
 
 AstraL, Discord sunucuları için geliştirilmiş bir kayıt ve moderasyon botudur. Bu belge, botun hangi verileri neden işlediğini, ne kadar sakladığını ve bu veriler üzerinde hangi haklara sahip olduğunuzu açıklar.
 
@@ -29,6 +29,8 @@ Bot yalnızca çalışması için gereken veriyi saklar. Aşağıdaki liste **ek
 | **Gerçek ad** | Kayıt başvurusu | Yalnızca sunucu yöneticisi kayıt formunu açtıysa toplanır |
 | **Yaş** | Kayıt başvurusu ve kayıt kaydı | Yaş sınırı olan sunucularda doğrulama |
 | Takma ad (nick) | Kayıt başvurusu ve kayıt kaydı | Sunucudaki görünen ismi ayarlamak |
+| Sunucu etiketi (server tag) | **Saklanmaz**, yalnızca anlık okunur | Yalnızca sunucu yöneticisi taglı rolü açtıysa: profilinde o sunucunun etiketini takana rol vermek, çıkarandan almak |
+| Otomatik yanıt ve özel komut metinleri | Sunucu ayarları | Sunucu yöneticisinin yazdığı metin; **yazan kişinin kimliği saklanmaz** |
 
 > **Gerçek ad ve yaş özel önemdedir.** Bu iki alan yalnızca sunucu yöneticisinin kayıt sistemini etkinleştirdiği sunucularda, yalnızca kişinin formu **kendi isteğiyle doldurması** üzerine toplanır. Form doldurulmadan bu veriler hiçbir şekilde elde edilmez.
 
@@ -37,6 +39,7 @@ Bot yalnızca çalışması için gereken veriyi saklar. Aşağıdaki liste **ek
 - Uyarılar: sebep metni, uyarıyı veren yetkilinin kimliği, tarih, aktif/pasif durumu. Uyarı sağ tık menüsündeki *Sil ve Uyar* ile verildiyse sebep metni **silinen mesajdan kısa bir alıntı** da içerir (bkz. 2.4)
 - Moderasyon işlemleri: yasaklama, atma, susturma, susturma kaldırma, kayıt, kayıt silme — işlem türü, sebep, süre, yetkili kimliği, tarih
 - AutoMod yakalamaları: Discord'un kendi AutoMod özelliği bir mesajınızı engellediğinde moderasyon geçmişinize **kuralın adı ve uygulanan eylem** yazılır (örnek: `AutoMod: Türkçe küfür · mesaj engellendi`). Engellenen mesajın içeriği ve kurala takılan kelime **saklanmaz** (bkz. 2.4)
+- Yetkili koruması: sunucu sahibi açtıysa ve bir yetkili kısa sürede toplu kanal/rol silme ya da toplu yasaklama/atma yaptıysa, o yetkilinin moderasyon geçmişine **işlemin özeti** yazılır (örnek: `60 sn'de 3 kanal silme · yetkili rollerini al`). Silinen kanal ve rollerin içeriği kaydedilmez
 - Kayıt başvuruları: başvuru durumu, kararı veren yetkili, red sebebi, karar tarihi
 
 ### 2.3 Etkinlik verileri
@@ -58,6 +61,11 @@ Bot, mesaj içeriğini **okur** ama kural olarak **saklamaz**. İçerik yalnızc
 5. **Denetim kaydı için** — yalnızca sunucu yöneticisi denetim kanalını ayarladıysa, silinen ve düzenlenen mesajlar o sunucunun **kendi Discord kanalına** yazılır. Bu kayıt botun veritabanında değil, sunucunun kendi kanalında durur ve sunucu yöneticisinin denetimindedir.
 6. **"Sil ve Uyar" için — kalıcı saklamanın tek istisnası.** Bir yetkili bir mesajı sağ tık menüsünden silip yazarını uyardığında, neden uyarıldığının sonradan anlaşılabilmesi için silinen mesajdan **kısa bir alıntı uyarı sebebine eklenir** ve uyarı kaydıyla birlikte saklanır. Alıntıyı kişinin kendisi ve o sunucunun yetkilileri görebilir; uyarı silme talebiyle birlikte silinir.
 7. **Discord AutoMod yakalamaları için** — yalnızca sunucuda AutoMod kuralı kuruluysa. Kuralı **Discord uygular**, mesajı Discord engeller; bot yalnızca "engellendi" bildirimini alır. Bu bildirim engellenen mesajın tam metnini ve kurala takılan kelimeyi içerir, ancak bot bunların **hiçbirini saklamaz** — moderasyon geçmişine yalnızca kuralın adı ve uygulanan eylem yazılır (bkz. 2.2). Aynı kişi aynı kurala arka arkaya takılırsa **60 saniye içindeki tekrarlar kaydedilmez**.
+8. **Otomatik yanıtlar için** — yalnızca sunucu yöneticisi otomatik yanıt tanımladıysa. Mesaj bellekte tanımlı tetiklerle karşılaştırılır; ne mesaj ne de eşleşme sonucu saklanır.
+
+### 2.4-a Yetkili koruması (yalnızca bellekte)
+
+Sunucu sahibi yetkili korumasını açtıysa, Discord'un denetim kaydına düşen **kanal silme, rol silme, yasaklama ve atma** işlemlerini yapan kişinin kimliği, işlemin türü ve zamanı **yalnızca bellekte, en fazla 20 dakika** tutulur — kısa sürede toplu yıkım yapılıp yapılmadığını saymak için. Hiçbir zaman diske yazılmaz; yalnızca eşik aşıldığında moderasyon geçmişine özet yazılır (bkz. 2.2).
 
 ### 2.5 Toplanmayan veriler
 
@@ -71,7 +79,8 @@ Bot şunları **hiçbir koşulda** toplamaz, saklamaz veya talep etmez: e-posta 
 |---|---|
 | Komutları çalıştırmak, botun temel işlevini sunmak | Sözleşmenin ifası (KVKK m.5/2-c, GDPR m.6/1-b) |
 | Kayıt sistemi: ad, yaş, takma ad | **Açık rıza** — kişi formu kendi isteğiyle doldurur (KVKK m.5/1, GDPR m.6/1-a) |
-| Moderasyon kaydı, uyarılar, baskın koruması, AutoMod yakalamaları | Meşru menfaat — sunucu güvenliğinin sağlanması (KVKK m.5/2-f, GDPR m.6/1-f) |
+| Moderasyon kaydı, uyarılar, baskın koruması, yetkili koruması, AutoMod yakalamaları | Meşru menfaat — sunucu güvenliğinin sağlanması (KVKK m.5/2-f, GDPR m.6/1-f) |
+| Taglı rol, otomatik yanıtlar | Meşru menfaat — sunucu yönetimi. Sunucu yöneticisi kapatabilir |
 | Etkinlik sayaçları, davet takibi | Meşru menfaat — sunucu yönetimi. Sunucu yöneticisi kapatabilir |
 | Hatırlatmalar | Sözleşmenin ifası — kişi kendisi kurar ve istediği an iptal edebilir |
 
@@ -82,6 +91,7 @@ Bot şunları **hiçbir koşulda** toplamaz, saklamaz veya talep etmez: e-posta 
 | Veri | Süre |
 |---|---|
 | Spam koruması için son mesajlar | **En fazla 2 dakika**, yalnızca bellekte |
+| Yetkili koruması için işlem sayımı | **En fazla 20 dakika**, yalnızca bellekte |
 | Silinen mesaj içeriği (`snipe`) | **2 saat**, yalnızca bellekte |
 | Kayıt, uyarı, moderasyon ve başvuru kayıtları | Bot sunucudan çıkarılana veya silme talebi gelene kadar |
 | Etkinlik sayaçları, davet kayıtları | Aynı |

@@ -32,6 +32,12 @@ Yalnızca "şu sürede şu kadar katılım" saymıyor. Davet kodunu ve hesap ya�
 
 Varsayılan tepki sunucuyu kilitlemek — doğrulama seviyesini yükseltip davetleri durdurmak. Atma ve yasaklama bilerek varsayılan değil: yanlış alarmda gerçek üyeler gider. Kilit kalıcı yazılıyor, yani bot yeniden başlasa bile sunucu yüksek doğrulamada unutulmuyor.
 
+### Yetkili koruması (anti-nuke)
+
+Baskın dışarıdan gelir; bu koruma içeriden gelene karşı. Ele geçirilmiş bir yönetici hesabı, kötü niyetli bir yetkili ya da bir bot kısa sürede toplu kanal/rol siler veya toplu yasaklarsa bunu Discord'un denetim kaydından sayıyor ve eşik aşılınca durduruyor: yalnızca **yönetim yetkili rollerini** alıyor, renk ve seviye rollerine dokunmuyor — yanlış alarmda geri vermek kolay. Sunucu sahibine özelden haber veriyor.
+
+Ayarlarını **yalnızca sunucu sahibi** değiştirebiliyor: yönetici yetkisiyle kapatılabilseydi ele geçirilmiş bir yönetici hesabı önce korumayı kapatırdı. `/antinuke durum` botun rolünün üstünde kalan yetkili rolleri ve muaf tutulması gerekebilecek botları gösteriyor.
+
 ### Anti-spam
 
 Mesaj seli, aynı mesajın tekrarı, toplu etiket ve büyük harf yağmuru. Spam mesajları toplu siliniyor, gönderen süreli susturuluyor; büyük harfte yalnızca mesaj siliniyor. Eşiklerin hepsi `/koruma spam` ile ayarlanıyor, yetkililer ve muaf rol etkilenmiyor. Tespit tamamen bellekte — mesaj başına veritabanı sorgusu yok, yoğun sunucuda botu yavaşlatmıyor.
@@ -62,9 +68,13 @@ Bir kullanıcıya sağ tıkla → **Uygulamalar** → *Sicili Göster* veya *Uya
 
 Başka bir sunucunun emojisini beğendin mi? Emojinin geçtiği mesaja sağ tıkla → *Emoji ve Çıkartma Ekle*. Mesajda birden çok emoji varsa hangilerini alacağını seçersin; çıkartmalar da gelir. **Nitro gerekmez.** `/emoji ekle` emojinin bağlantısını ya da kimliğini de kabul eder, `/emoji yukle` kendi görselinden emoji yapar.
 
+### Otomatik yanıt ve özel komutlar
+
+`sa` yazana `Aleyküm selam, hoş geldin!` — ya da `.kurallar` yazınca kuralların tamamı. Yanıtlar çok satırlı olabilir, `{kisi}` ve `{sunucu}` gibi değişkenler alır. Büyük harf, Türkçe karakter ve noktalama fark etmiyor: "Selamün aleyküm!" ile "selamun aleykum" aynı. Yanıtlar kimseyi etiketlemiyor, aynı kanalda aynı yanıt sel yapmıyor.
+
 ### Ayrıca
 
-Hatırlatıcı (`/hatirlat 30dk toplantı` — özelden gelir) · ses kanalı taşıma (`/tasi`: bir kişiyi ya da kanaldaki herkesi) · rol butonları · süreli rol · davet takibi · mesaj ve ses istatistikleri · AFK · yetkili performans tablosu · snipe · toplu rol · kanal kilitleme ve yenileme
+Taglı rol (sunucu etiketini takanlara otomatik rol, `/tagrol`) · hatırlatıcı (`/hatirlat 30dk toplantı` — özelden gelir) · ses kanalı taşıma (`/tasi`: bir kişiyi ya da kanaldaki herkesi) · rol butonları · süreli rol · davet takibi · mesaj ve ses istatistikleri · AFK · yetkili performans tablosu · snipe · toplu rol · kanal kilitleme ve yenileme
 
 ---
 
@@ -88,6 +98,7 @@ Yetkili rolü, üye rolü, kayıtsız rolü ve kanalları tanımlar. Kayıt sist
     /kayitpanel gonder   butonlu kayıt paneli
     /antiraid ayarla     baskın koruması
     /koruma ayarla       küfür ve bağlantı filtresi
+    /antinuke ayarla     yetkili koruması (yalnızca sunucu sahibi)
 
 **5. Komutları keşfet.**
 
