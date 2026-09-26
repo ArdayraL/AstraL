@@ -1,6 +1,6 @@
 # AstraL — Gizlilik Politikası
 
-**Son güncelleme:** 13 Eylül 2026
+**Son güncelleme:** 26 Eylül 2026
 
 AstraL, Discord sunucuları için geliştirilmiş bir kayıt ve moderasyon botudur. Bu belge, botun hangi verileri neden işlediğini, ne kadar sakladığını ve bu veriler üzerinde hangi haklara sahip olduğunuzu açıklar.
 
@@ -45,12 +45,13 @@ Bot yalnızca çalışması için gereken veriyi saklar. Aşağıdaki liste **ek
 - Son mesaj tarihi
 - AFK durumu ve kişinin kendi yazdığı AFK sebebi
 - Davet takibi: kimin hangi davet koduyla geldiği ve sunucudan ayrılıp ayrılmadığı
+- Hatırlatmalar: `/hatirlat` ile **kendin kurduğun** hatırlatmanın metni, zamanı ve kurulduğu kanal. Hatırlatma zamanı gelip **gönderildiği anda silinir**. Hatırlatma yalnızca özel mesajla gönderilir; özel mesajların kapalıysa kurduğun kanalda yalnızca etiketlenirsin, **metin kanala yazılmaz**
 
 ### 2.4 Mesaj içeriği
 
 Bot, mesaj içeriğini **okur** ama kural olarak **saklamaz**. İçerik yalnızca şu anlarda işlenir:
 
-1. **Komut çalıştırmak için** — mesaj bir komutla başlıyorsa. İşlem bitince içerik atılır.
+1. **Komut çalıştırmak için** — mesaj bir komutla başlıyorsa ya da bir mesaja sağ tık menüsünden bir komut uygulandıysa (örneğin *Emoji ve Çıkartma Ekle*, mesajdaki emojileri bulmak için içeriği okur). İşlem bitince içerik atılır.
 2. **Küfür ve bağlantı filtresi için** — yalnızca sunucu yöneticisi filtreyi açtıysa. Kontrol bellekte yapılır, sonuç veritabanına yazılmaz.
 3. **Spam koruması için** — yalnızca sunucu yöneticisi açtıysa. Mesaj selini ve aynı mesajın tekrarını yakalamak için kişinin son mesajlarının **içeriği, gönderim zamanı ve etiket sayısı yalnızca bellekte, en fazla 2 dakika** tutulur. Spam tespit edildiğinde bu kayıtlar hemen atılır; hiçbir zaman diske yazılmaz. Spam sonucu uygulanan susturma, diğer moderasyon işlemleri gibi kaydedilir (bkz. 2.2) — mesaj içeriği bu kayda girmez.
 4. **Silinen mesajı geri gösterme (`snipe`) için** — silinen son mesajlar **yalnızca bellekte, en fazla 2 saat** tutulur ve yalnızca "Mesajları Yönet" yetkisi olanlar görebilir. Bot yeniden başladığında bu veri tamamen kaybolur, hiçbir zaman diske yazılmaz.
@@ -72,6 +73,7 @@ Bot şunları **hiçbir koşulda** toplamaz, saklamaz veya talep etmez: e-posta 
 | Kayıt sistemi: ad, yaş, takma ad | **Açık rıza** — kişi formu kendi isteğiyle doldurur (KVKK m.5/1, GDPR m.6/1-a) |
 | Moderasyon kaydı, uyarılar, baskın koruması, AutoMod yakalamaları | Meşru menfaat — sunucu güvenliğinin sağlanması (KVKK m.5/2-f, GDPR m.6/1-f) |
 | Etkinlik sayaçları, davet takibi | Meşru menfaat — sunucu yönetimi. Sunucu yöneticisi kapatabilir |
+| Hatırlatmalar | Sözleşmenin ifası — kişi kendisi kurar ve istediği an iptal edebilir |
 
 ---
 
@@ -83,6 +85,7 @@ Bot şunları **hiçbir koşulda** toplamaz, saklamaz veya talep etmez: e-posta 
 | Silinen mesaj içeriği (`snipe`) | **2 saat**, yalnızca bellekte |
 | Kayıt, uyarı, moderasyon ve başvuru kayıtları | Bot sunucudan çıkarılana veya silme talebi gelene kadar |
 | Etkinlik sayaçları, davet kayıtları | Aynı |
+| Hatırlatmalar | **Gönderildiği anda silinir**; en uzun 1 yıl ileriye kurulabilir. `/hatirlat sil` ile istediğin an iptal edebilirsin |
 | Sunucu ayarları | Bot sunucudan çıkarıldığında geçerliliğini yitirir |
 | Veritabanı yedekleri | Son 14 günün günlük yedekleri, öncesinde haftada bir yedek olmak üzere **en fazla 10 hafta** |
 

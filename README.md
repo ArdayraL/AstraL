@@ -4,7 +4,7 @@
 
 Kayıt başvurularını butonlu forma bağlar, başvuranın geçmişini yetkilinin önüne koyar, uyarıları sunucu bazlı numaralandırır, spamı bellekte yakalar ve baskınları davet koduyla hesap yaşını birleştirerek durdurur. Komutlar `/komut` olarak çalışır, çoğu `.komut` olarak da.
 
-[**➕ Sunucuna ekle**](https://discord.com/oauth2/authorize?client_id=1457131021194625239&permissions=1099914669302&scope=bot+applications.commands) · [Gizlilik Politikası](GIZLILIK.md) · [Kullanım Şartları](SARTLAR.md)
+[**➕ Sunucuna ekle**](https://discord.com/oauth2/authorize?client_id=1457131021194625239&permissions=9896024468726&scope=bot+applications.commands) · [Gizlilik Politikası](GIZLILIK.md) · [Kullanım Şartları](SARTLAR.md)
 
 ---
 
@@ -58,15 +58,19 @@ Denetim kaydı moderasyon logundan **ayrı kanalda** tutuluyor. Çok daha yoğun
 
 Bir kullanıcıya sağ tıkla → **Uygulamalar** → *Sicili Göster* veya *Uyar*. Bir mesaja sağ tıkla → *Sil ve Uyar*: mesaj siliniyor, yazarı uyarılıyor ve silinen mesaj uyarı sebebine alıntılanıyor. Komut yazmaya, kimlik kopyalamaya gerek yok.
 
+### Emoji ve çıkartma ekleme
+
+Başka bir sunucunun emojisini beğendin mi? Emojinin geçtiği mesaja sağ tıkla → *Emoji ve Çıkartma Ekle*. Mesajda birden çok emoji varsa hangilerini alacağını seçersin; çıkartmalar da gelir. **Nitro gerekmez.** `/emoji ekle` emojinin bağlantısını ya da kimliğini de kabul eder, `/emoji yukle` kendi görselinden emoji yapar.
+
 ### Ayrıca
 
-Rol butonları · süreli rol · davet takibi · mesaj ve ses istatistikleri · AFK · yetkili performans tablosu · snipe · toplu rol · kanal kilitleme ve yenileme
+Hatırlatıcı (`/hatirlat 30dk toplantı` — özelden gelir) · ses kanalı taşıma (`/tasi`: bir kişiyi ya da kanaldaki herkesi) · rol butonları · süreli rol · davet takibi · mesaj ve ses istatistikleri · AFK · yetkili performans tablosu · snipe · toplu rol · kanal kilitleme ve yenileme
 
 ---
 
 ## Başlarken
 
-**1. Botu ekle.** [Davet bağlantısı](https://discord.com/oauth2/authorize?client_id=1457131021194625239&permissions=1099914669302&scope=bot+applications.commands)
+**1. Botu ekle.** [Davet bağlantısı](https://discord.com/oauth2/authorize?client_id=1457131021194625239&permissions=9896024468726&scope=bot+applications.commands)
 
 AstraL kurulumda **Yönetici yetkisi istemez** — yalnızca komutların gerçekten kullandığı izinleri talep eder.
 
